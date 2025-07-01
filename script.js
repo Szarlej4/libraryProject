@@ -80,7 +80,7 @@ function pagesInputValid() {
 
 function isBookInLibrary(title) {
     errorMsg.innerText =
-        "That book already exists in the library";
+        "This book already exists in the library";
     return library.books.find(
         (book) => book.title === title
     );
@@ -99,7 +99,7 @@ function throwErrors() {
                 "The book must have less than 5000 pages";
         } else if (pagesInput.value < 1) {
             errorMsg.innerText =
-                "The book's pages amount must be positive value";
+                "The book's pages amount must be a positive value";
         } else if (pagesInput.value.includes("e")) {
             errorMsg.innerText =
                 "The book's pages amount must be in a decimal form";
@@ -258,8 +258,6 @@ closeModalButton.addEventListener("click", (e) => {
 
 restoreLocal();
 
-// localStorage
-
 function saveLocal() {
     localStorage.setItem(
         "library",
@@ -271,10 +269,8 @@ function restoreLocal() {
     const books = JSON.parse(
         localStorage.getItem("library")
     );
-    console.log(books);
     if (books) {
         for (let book of books) {
-            console.log(book);
             const newBook = new Book(
                 book.title,
                 book.author,
@@ -290,7 +286,6 @@ function restoreLocal() {
             );
         }
     } else {
-        console.log("no books?");
         library.books = [];
     }
 }
